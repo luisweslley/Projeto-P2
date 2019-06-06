@@ -10,7 +10,6 @@ import java.util.concurrent.*;
 public class Master {
      public static void main(String[] args) throws InterruptedException, ExecutionException, FileNotFoundException, IOException {
        
-      
         ExecutorService tpes =
                 Executors.newCachedThreadPool();
    List<List<String>> records = new ArrayList<>();
@@ -21,30 +20,24 @@ public class Master {
 	    try (BufferedReader br = new BufferedReader(new FileReader("C:\\Trabalho\\p12A")))
 	    {String line;
 	     while ((line = br.readLine()) != null)
-	     {
+	    {
 	    	 String[] values = line.split("\\s+");
 	    	 records.add(Arrays.asList(values));
-	     }
-	    
-	
-		}
+	    }
+	    }
 	    
 	    catch (IOException e)
 	    {
 	    	 System.out.println("Algum erro occoreu, pfv tente novamente!");
 	    }
-	    
-	    
-	    
         
 	    long t1 = System.currentTimeMillis();
+            
         
         Future<Double> futures[] = new Future[records.size()];
         
-       
         double series[] = {0,0,0};
        
-        
         for(int j = 1; j <=3;j++)
         {
        
@@ -58,29 +51,23 @@ public class Master {
     }
        //MATRIZ B
         
-       
-        
 	    try (BufferedReader br = new BufferedReader(new FileReader("C:\\Trabalho\\p12B")))
 	    {String line;
 	     while ((line = br.readLine()) != null)
-	     {
+	    {
 	    	 String[] values = line.split("\\s+");
 	    	 records2.add(Arrays.asList(values));
-	     }
-	    
-	
-		}
+	    }
+	    }
 	    
 	    catch (IOException e)
 	    {
 	    	 System.out.println("Algum erro occoreu, pfv tente novamente!");
 	    }
         
-        
-        
+            
         Future<Double> futures2[] = new Future[records2.size()];
         double seriesB[] = {0,0,0};
-        
         
         for(int j = 1; j <=3;j++)
         {
@@ -92,7 +79,7 @@ public class Master {
         for (int i = 0; i < records2.size(); i++) {
         	seriesB[j-1] += futures2[i].get();
         }
-    }
+        }
         
        
         long t2 = System.currentTimeMillis();
